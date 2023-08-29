@@ -1,0 +1,84 @@
+{% extends 'blog/base.html' %}
+{% block style_block %}
+{% for post in posts %}
+{% if forloop.first %}
+.newest-post-entry {
+background: url({{ post.imagesmall.url }}) no-repeat center center;
+background-repeat: no-repeat;
+width: 100%;
+background-size: cover;
+height:380px;
+background-position: center center;
+text-align:center;
+margin:auto;
+padding:0;
+}
+@media (min-width: 400px) {
+.newest-post-entry {
+background: url({{ post.imagewide.url }}) no-repeat center center;
+background-repeat: no-repeat;
+width: 100%;
+background-size: cover;
+height:380px;
+background-position: center center;
+text-align:center;
+margin:auto;
+padding:0;
+}
+.head-article-byline {
+margin-top: {{ post.head_article_byline_widescreen_margin }}px
+}
+}
+
+{% endif %}
+{% endfor %}
+{% endblock style_block %}
+{% block content %}
+<div class="row">
+    {% for post in posts %}
+    {% if forloop.first %}
+    <div class="col-md-12 p-0">
+        <article class="newest-post p-0">
+            <div class="media-body">
+                <a href="{%url 'post-detail' post.slug%}">
+                    <div class="newest-post-entry">
+                        <div class="row head-article-content">
+                            <div class="post-left col-md-7 container">
+                                <div class="row justify-content-center align-items-center title-text h-75">
+                                    <h1 class="head-article-title mt-3">{{ post.title }}</h1>
+                                </div>
+                            </div>
+                            <div class="post-right col-md-5 ">
+                                <div class="align-items-center article-content h-100">
+                                    <h5 class="head-article-category mt-3">{{post.category}}</h5>
+                                    <h4 class="head-article-byline mr-1">{{ post.byline|safe }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </article>
+    </div>
+    {% else %}
+    <div class="col-md-6">
+        <article class="media content-section other-posts row row-eq-height">
+            <div class="media-body">
+                <a href="{%url 'post-detail' post.slug%}">
+                    <div class="post-entry">
+                        <img class="rounded" src="{{ post.imagesmall.url }}" alt="post image">
+                        <h2 class="article-title">{{ post.title }}</h1>
+                            <h5 class="article-category mt-3">{{post.category}}</h5>
+                            <p class="article-byline">{{ post.byline }}
+                            <p>
+                    </div>
+                </a>
+            </div>
+        </article>
+    </div>
+    {% endif %}
+
+    {% endfor %}
+
+</div>
+{% endblock content %}

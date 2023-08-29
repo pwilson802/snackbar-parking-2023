@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="info">
+    <h1>Contact</h1>
+    <p>
+        Hit us up on <a href="https://twitter.com/SnackbarP" target="_blank">twitter</a>, visit our <a href="https://snackbarparking.slack.com/archives/CRRHV5GK1" target="_blank">slack channel</a> for website ideas or use the form below to send us an email.
+    </p>
+    <div>
+        <form method="post" action="{% url 'contact' %}">
+            {% csrf_token %}
+            <div className="col-md-6">
+            <input class="form-control" type="email" name="emailaddress" placeholder="email address">
+            <textarea class="form-control mt-1" name="message" placeholder="Message..."></textarea>
+            <input class="mt-1" type="submit" />
+            </div>
+        </form>
+    </div>
+</div>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div class="">
+    <p class="text-center">{{ message }}</p> 
+    </div>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock content %}

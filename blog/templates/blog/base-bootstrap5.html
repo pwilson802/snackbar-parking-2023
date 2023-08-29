@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=ABeeZee&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+    
+    {% if title %}
+    <title>Snackbar Parking - {{ title }}</title>
+    {% else %}
+    <title>Snackbar Parking</title>
+    {% endif %}
+</head>
+
+<body>
+        <header class="site-header">
+            <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+                <div class="container">
+                    <a class="navbar-brand mr-4" href="/">
+                        SnackBar Parking
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+                        aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarToggle">
+                        <div class="navbar-nav mr-auto">
+                            {% comment %} <a class="nav-item nav-link" href="#">Home</a> {% endcomment %}
+                            {% comment %} <a class="nav-item nav-link" href="#">About</a> {% endcomment %}
+                        </div>
+                        <!-- Navbar Right Side -->
+                        <div class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Categories
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/">story</a>
+                                    <a class="dropdown-item" href="/">review</a>
+                                    <a class="dropdown-item" href="/">news</a>
+                                    <a class="dropdown-item" href="/">snack-bar park</a>
+                                </div>
+                            </li>
+                            <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+                            <a class="nav-item nav-link" href="/">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+    <main role="main" class="container">
+        <div class="justify-content-center align-items-center">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+    <footer class="page-footer">
+        <div class="wrapper">
+            <div class="footer-col social">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-8">
+                        <ul class="text-center align-middle">
+                            <li><a href="https://www.pinterest.com.au/66c4edb4c1f49f5dfda7d29be10215/" class="fb"
+                                    target="_blank"><i class="icon-pinterest"></i></a></li>
+                            <li><a href="https://twitter.com/SnackbarP" class="tw" target="_blank"><i
+                                        class="icon-twitter"></i></a></li>
+                            <li><a href="https://www.instagram.com/snackbarparking" class="gp" target="_blank"><i
+                                        class="icon-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

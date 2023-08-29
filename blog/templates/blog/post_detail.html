@@ -1,0 +1,47 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <article class="media content-section">
+    <div class="container">
+    <div class="row">
+    <div class="media-body">
+        <div class="article-metadata">
+            <small class="text-muted">{{ object.date_posted|date:"j F Y" }}</small>
+        </div>
+        <h2 class = "article-title">{{ object.title }}</h2>
+        {% comment %} <div class="by-line">
+        <p>{{ object.byline }}</p>
+        </div> {% endcomment %}
+        {% if object.category == 'snack-bar'  %}
+            <div class="story-table p-3" style="display:inline-block">
+                <span class="span font-weight-bold">Type: </span>{{ object.park_type }}<br>
+                <span class="span font-weight-bold">Destination: </span>{{ object.park_destination}}<br>
+                <span class="span font-weight-bold">Difficulty: </span>{{ object.park_difficulty}}<br>
+                <span class="span font-weight-bold">Restrictions: </span>{{object.park_restrictions}}
+            </div>
+        {% endif %}
+        {% if object.category == 'review' %}
+            <div class="story-table p-3" style="display:inline-block">
+                <span class="span font-weight-bold">Location: </span>{{ object.review_location }}<br>
+                <span class="span font-weight-bold">Type: </span>{{ object.review_type}}<br>
+                <span class="span font-weight-bold">Restrictions: </span>{{ object.review_restrictions}}<br>
+                <span class="span font-weight-bold">Snack-bar status: </span>{{object.review_snackbar_status}}
+            </div>
+        {% endif %}
+        <p class="article-content mt-3">{{ object.content|safe }}</p>
+        <picture>
+            <source 
+                media="(max-width: 440px)"
+                srcset="{{object.imagesmall.url}}">
+            <img class="img-fluid" src="{{object.imagewide.url}}" 
+            alt="Article Image">
+        </picture>
+    </div>
+    </div>
+    </div>
+    </article>
+    <div class="col-md-12">
+    {% include 'blog/comments.html' with url=object.slug %}
+    </div>
+
+{% endblock content %}
+

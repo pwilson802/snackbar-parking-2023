@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <div class="row">
+    {% for post in posts %}   
+    {% if post.category in request.path %}
+    <div class="col-md-4">
+        <article class="media content-section other-posts row">
+            <div class="media-body">
+                <a href="{%url 'post-detail' post.slug%}">
+                <div class="post-entry">
+                    <img class="rounded" src="{{ post.imagesmall.url }}" alt="post image">
+                    <h2 class="article-title">{{ post.title }}</h1>
+                    <h5 class="article-category mt-3">{{post.category}}</h5>
+                    <p class="article-byline">{{ post.byline }}<p>
+                </div>
+                </a>
+            </div>
+        </article>
+    </div>    
+    {% endif %}
+    {% endfor %}
+    </div>
+
+{% endblock content %}
